@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  resources :shops
+
   get 'welcome/home'
 
   get 'welcome/about'
+
+  get 'shops/new'
 
   root to: 'welcome#home'
 
