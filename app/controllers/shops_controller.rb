@@ -10,6 +10,7 @@ class ShopsController < ApplicationController
   # GET /shops/1
   # GET /shops/1.json
   def show
+    @shop = Shop.find(params[:id])
   end
 
   # GET /shops/new
@@ -64,7 +65,7 @@ class ShopsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
-      @shop = Shop.find(params[:id])
+     @shop = Shop.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
