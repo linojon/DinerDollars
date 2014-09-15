@@ -1,2 +1,24 @@
-<h1>Owners#home</h1>
-<p>Find me in app/views/owners/home.html.erb</p>
+<h1>Restaurant Owner's Home Page</h1>
+
+<div class="pull-right owners">
+  <%= link_to "NOT A RESTAURANT EMPLOYEE?", welcome_home_path, class: "btn btn-danger btn-lg" %>
+ </div> 
+
+<h2>Customer Input</h2>
+
+<div class="col-md-8">
+  <%= form_for @user do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "Enter Customer's Last Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control', placeholder: "Enter Passcode" %>
+    </div>
+    <% end %>
+</div>
+ 
+<p>
+<button type="button" class="btn btn-info btn-lg">Dedicated Diner Dollars Summary</button>
+</p>
