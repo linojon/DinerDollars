@@ -1,0 +1,60 @@
+Owner is logged in
+
+/shops/1234 (replaces the "owners home page")
+Page shows input for customer name, code , bill $
+Press "Enter" => (GET) /shops/1234/enrollments/lookup?name= & code= & bill=
+
+/enrollments/567 (show)
+Pages show customer name, code bill$, 
++ points, rewards, and rewards statu table
+Press "Redeem Rewards" => (PUT) /enrollments/update ? bill=
+
+Pages shows new Status
+Press "Done" => /shops/1234
+
+
+=========
+
+ /shops/43/customers/1234
+
+ -->
+
+ resources shops do
+   resources customers
+  end
+
+ CustomersController
+   def show
+     @shop = Shop.find params[:shop_id]
+     @customer = Customer.find params[:id]
+   end
+
+views/customers/show.html.erb
+...
+
+   
+
+
+
+
+ CRUD resources
+
+  - index (list or home)
+  - create (new , form)
+  - read (show)
+  - update (edit, save)
+  - destroy 
+
+
+
+owner belongs to shop
+shop has one owner
+
+  Shops
+    list shops
+
+  Owners
+
+
+shop has many customers through rewards
+customer has many shops through rewards

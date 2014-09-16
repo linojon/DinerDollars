@@ -1,0 +1,39 @@
+
+Owner (user)
+  has one shop
+  when logged in his home page is his shop show page
+          /shop/123
+
+Shop 
+  has_many :enrollments
+  has_many :customers, through: :enrollments
+  def show
+    if current_user.is_a? Owner
+      ....
+  
+
+Customer
+  has many enrollments
+  has many shops through enrollments
+
+
+
+Enrollment
+  belongs to customer
+  belongs to a shop
+
+  attributes: $spent, :shop_id, :customer_id
+  def rewards
+    $spent / 250
+  end
+
+
+"many to many relationship"
+
+
+/shop/123
+  [shop name]
+  input to look up a customer
+    form_for @enrollment, method: :get
+    => /e
+

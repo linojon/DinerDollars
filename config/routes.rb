@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'owners/summary'
 
   devise_for :users
-  resources :shops
+
+  resources :shops do
+    resources :customers
+  end
 
   get 'welcome/home'
 

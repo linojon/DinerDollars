@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915160039) do
+ActiveRecord::Schema.define(version: 20140916191556) do
+
+  create_table "enrollments", force: true do |t|
+    t.integer  "shop_id"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "customer_id"
+  end
+
+  add_index "enrollments", ["shop_id"], name: "index_enrollments_on_shop_id"
 
   create_table "shops", force: true do |t|
     t.string   "name"
