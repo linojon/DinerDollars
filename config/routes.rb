@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'owners/home'
 
   get 'owners/summary'
@@ -6,14 +7,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :shops do
-    resources :customers
+    resources :customers, controller: 'enrollments'
   end
 
   get 'welcome/home'
 
   get 'welcome/about'
 
-  get 'shops/new'
+  get 'shops/customer/new'
 
   root to: 'welcome#home'
 

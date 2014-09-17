@@ -1,4 +1,5 @@
 class Enrollment < ActiveRecord::Base
-  belongs to :shop
-  belongs to :customer
+  belongs_to :shop
+  belongs_to :customer
+  has_many :points
 end

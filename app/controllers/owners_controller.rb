@@ -1,6 +1,6 @@
 class OwnersController < ApplicationController
   def home
-    @user = User.new
+    @owner = Owner.new
   end
 
   def summary

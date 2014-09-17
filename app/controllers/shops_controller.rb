@@ -1,4 +1,4 @@
-class ShopsController < ApplicationController
+ class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   # GET /shops
