@@ -11,6 +11,15 @@ require 'faker'
 end
 customers = User.all
 
+15.times do
+  enrollment = Enrollment.new(
+  shop_id:  Faker::Number.number(2),
+  customer_id:  Faker::Number.number(2),
+  points:  Faker::Number.number(3)
+  )
+enrollment.save
+end
+enrollment = Enrollment.all
 
 enrollment = Enrollment.new(
   shop_id:  '1',

@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
 
   scope :owners, -> {where type: 'Owner' }
   scope :customers, -> {where type: 'Customer' }
+
+  def owner?
+    type == 'Owner'
+  end
+
+  def admin?
+    false
+  end
 end
 
 

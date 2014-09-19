@@ -1,16 +1,30 @@
 class EnrollmentsController < ApplicationController
   def index
-    @enrollments = Enrollment.all
+    if current_user.admin?
+      @enrollments = Enrollment.all
+
+    elsif current_user.owner?
+      #@shop = Shop.find :shop_id
+      @shop = current_user.shop
+      @enrollments = current_user.enrollments
+    
+      render :index_owner
+    else  
+    #customer 
+      @shops = current_user.shops
+      @enrollments = current_user.enrollments       
+      render :index_customer
+    end
   end
 
   def new
     @enrollment = Enrollment.new
-    authorize @enrollment
+    #authorize @enrollment
   end
 
   def show
     @enrollment = Enrollment.find(params[:id])
-   
+    
   end
 
   def update
@@ -58,5 +72,9 @@ class EnrollmentsController < ApplicationController
 
     def points_to_rewards
       points = 250 - @points 
+    end
+    def total_redeemed
+      rewards = rewards + @rewards
+      
     end
 end

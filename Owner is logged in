@@ -31,8 +31,31 @@ Press "Done" => /shops/1234
 
 views/customers/show.html.erb
 ...
+Need to add these two columns in customer_enrollment/index
+<th>Diner $ Available</th>
+      <th>Points Needed to Next $</th>
 
-   
+   <% @enrollments.each do |enrollment| %>
+    <tr>
+      <td><%= shop_id %></td>
+      <td><%= points %></td>
+      <td><%= rewards %></td>
+      <td><%= points_to_rewards %></td>
+    </tr>
+    <% end %>
+
+    <div class="col-md-8">
+  
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "Enter Customer's Last Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control', placeholder: "Enter Passcode" %>
+    </div>
+    
+</div>
 
 
 

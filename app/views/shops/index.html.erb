@@ -6,8 +6,7 @@
       <th>Name</th>
       <th>Kind</th>
       <th>Location</th>
-      <th>Codename</th>
-      <th>Codenumber</th>
+      <th>Enrolled?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,12 +16,11 @@
       <tr>
         <td><%= shop.name %></td>
         <td><%= shop.kind %></td>
-        <td><%= shop.location %></td>
-        <td><%= shop.codename %></td>
-        <td><%= shop.codenumber %></td>
-        <td><%= link_to 'Show', shop %></td>
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= shop.location %></td> 
+          <% if has_enrollment? %>  
+        <td><%= link_to 'Enrolled', edit_enrollment_path(shop) %></td>
+          <% else link_to 'Sign Up', edit_enrollment_path(shop) %>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

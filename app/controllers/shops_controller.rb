@@ -68,6 +68,13 @@
      @shop = Shop.find(params[:id])
     end
 
+    def has_enrollment
+      if enrollment.current_user 
+          has_enrollment = true
+      else 
+          has_enrollment = false
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def shop_params
       params.require(:shop).permit(:name, :kind, :location, :codename, :codenumber)
