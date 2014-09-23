@@ -12,12 +12,14 @@
       <th>Points Needed to Next $</th>
     </tr>
   
-   <% @enrollments.each do |enrollment| %>
+   <% @shops.each do |shop| %>
     <tr>
-      <td><%= link_to enrollment.shop_id.name, shop %></td>
+      <td><%= shop.name %></td>
       <td><%= enrollment.points %></td>
     </tr>
     
     <% end %>
+
   </table>
+
 </div>

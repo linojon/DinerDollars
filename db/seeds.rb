@@ -23,14 +23,14 @@ enrollment = Enrollment.all
 
 enrollment = Enrollment.new(
   shop_id:  '1',
-  customer_id: '2',
+  customer_id: '3',
   points:       '150'
   )
 enrollment.save
 
 enrollment = Enrollment.new(
   shop_id:  '3',
-  customer_id: '2',
+  customer_id: '3',
   points:       '78'
   )
 enrollment.save
@@ -39,7 +39,7 @@ customer = User.new(
   name:     'Kerry',
   email:    'kerry@example.com',
   password: 'helloworld',
-  type:     'customer'
+  role:     'customer'
 )
 customer.save
 
@@ -47,7 +47,7 @@ owner = User.new(
   name:     'Owner Mex',
   email:    'owner@example.com',
   password: 'helloworld',
-  type:     'owner'
+  role:     'owner'
 )
 owner.save
 
@@ -55,6 +55,6 @@ customer = User.new(
   name:     'Debbie',
   email:    'customer@example.com',
   password: 'helloworld',
-  type:     'customer'
+  role:     'customer'
 )
 customer.save

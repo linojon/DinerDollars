@@ -9,14 +9,16 @@
       <th>Restaurant</th>
       <th>Type</th>
       <th>Location</th>
-      <th><label class="checkbox" value="enrollment">Enroll ?</label></th>
+      <th>Enroll</th>
     </tr>
+  <!-- index of all shops customer is not enrolled in -->
     <% @shops.each do |shop| %>
     <tr class="info">
-      <td>@shop.name</td>
-      <td>@shop.kind</td>
-      <td>@shop.location</td>
-      <td><label class="checkbox" value="enrollment">Enroll ?</label></td>
+      <td>shop.name</td>
+      <td>shop.kind</td>
+      <td>shop.location</td>
+      <td><%= f.submit "Enroll", class: "btn btn-lg btn-primary" %></td>
     </tr>
     <% end %>
   </table>
+<%= button_to "Enroll", new_customer_shop_path(resource_name), method: :create, class: 'btn btn-success' %>

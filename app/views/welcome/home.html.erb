@@ -1,6 +1,9 @@
 <div class="pull-right owners">
-  <%= link_to "Restaurant Owners Sign In", new_owner_session_path, class: "btn btn-warning" %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% if current_user %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Restaurant Owners Sign In", new_owner_session_path, class: "btn btn-warning" %>
+  <% end %>
  </div> 
  <div class="jumbotron">
   <h1>Welcome!</h1>

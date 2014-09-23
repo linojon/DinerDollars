@@ -4,17 +4,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def type?(base_type)
-   type == base_type.to_s
+  def role?(base_role)
+   role == base_role.to_s
   end
 
   self.inheritance_column = nil
 
-  scope :owners, -> {where type: 'Owner' }
-  scope :customers, -> {where type: 'Customer' }
+  scope :owners, -> {where role: 'Owner' }
+  scope :customers, -> {where role: 'Customer' }
+  scope :admin, -> {where role: 'Admin' }
 
   def owner?
-    type == 'Owner'
+    role == 'Owner'
   end
 
   def admin?

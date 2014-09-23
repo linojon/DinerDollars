@@ -8,22 +8,13 @@ Rails.application.routes.draw do
   devise_for :customers
   devise_for :owners, only: :sessions
 
-
   resources :customers do
-    resources :enrollments do
-      resources :shops
-    end
-  end
-  
-  resources :shops do
-    resources :customers, through: :enrollments
+    resources :shops, through: :enrollments
   end
 
   get 'welcome/home'
 
   get 'welcome/about'
-
-  get 'shops/customer/new'
 
   root to: 'welcome#home'
 

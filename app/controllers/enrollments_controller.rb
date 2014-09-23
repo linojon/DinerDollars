@@ -4,26 +4,26 @@ class EnrollmentsController < ApplicationController
       @enrollments = Enrollment.all
 
     elsif current_user.owner?
-      #@shop = Shop.find :shop_id
-      @shop = current_user.shop
-      @enrollments = current_user.enrollments
+
+      @shop = Shop.find(params[:id])
     
       render :index_owner
     else  
     #customer 
-      @shops = current_user.shops
-      @enrollments = current_user.enrollments       
+      #@shop = Shop.find(params[:id])
+      @enrollment = Customer.shops.find(params[:id])
+      
       render :index_customer
     end
   end
 
   def new
     @enrollment = Enrollment.new
-    #authorize @enrollment
+
   end
 
   def show
-    @enrollment = Enrollment.find(params[:id])
+    @enrollment = Enrollment.find(enrollment_params)
     
   end
 
@@ -31,10 +31,9 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-    @enrollment = Enrollment.new(enrollment_params)
-    authorize @enrollment
-    authorize @points
+    @enrollment = Enrollment.new(params[:enrollment])
     if @enrollment.save
+      points = 0
       redirect_to @enrollment, notice: "Your enrollment was saved successfully."
     else
       flash[:error] = "Error creating enrollment. Please try again."
@@ -59,6 +58,10 @@ class EnrollmentsController < ApplicationController
     params.require(:enrollment).permit(:shop_id, :customer_id, :points)
   end
     
+    
+    def has_enrollment(enrollment_params)
+      customer.shop ? true : false
+    end
 
     def rewards
       if @points >= 250
@@ -74,7 +77,7 @@ class EnrollmentsController < ApplicationController
       points = 250 - @points 
     end
     def total_redeemed
-      rewards = rewards + @rewards
+      self.total_attribute(:total, new_total)
       
     end
 end

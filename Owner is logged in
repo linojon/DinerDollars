@@ -15,6 +15,15 @@ Press "Done" => /shops/1234
 
 =========
 
+<% form_for [@customer, @shop] do |f| %>
+    <tr class="info">
+      <td>@shop.name</td>
+      <td>@shop.kind</td>
+      <td>@shop.location</td>
+      <td><%= f.submit "Enroll", class: "btn btn-lg btn-primary" %></td>
+    </tr>
+    <% end %>
+
  /shops/43/customers/1234
 
  -->
