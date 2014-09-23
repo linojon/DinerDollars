@@ -5,11 +5,9 @@ Rails.application.routes.draw do
   get 'owners/summary'
 
   devise_for :users
-  devise_for :customers
-  devise_for :owners, only: :sessions
 
   resources :customers do
-    resources :shops, through: :enrollments
+    resources :enrollments
   end
 
   get 'welcome/home'

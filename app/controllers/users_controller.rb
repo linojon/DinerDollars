@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
   
   def create
+    debugger
     @user = User.new(user_params)
     if @user.save
       # Handle a successful save.
@@ -20,6 +21,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :role)
     end
 end

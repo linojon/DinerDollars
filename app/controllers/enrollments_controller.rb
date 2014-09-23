@@ -1,20 +1,24 @@
 class EnrollmentsController < ApplicationController
   def index
-    if current_user.admin?
-      @enrollments = Enrollment.all
+    # if current_user.admin?
+    #   @enrollments = Enrollment.all
 
-    elsif current_user.owner?
+    # elsif current_user.owner?
 
-      @shop = Shop.find(params[:id])
+    #   @shop = Shop.find(params[:id])
     
-      render :index_owner
-    else  
-    #customer 
-      #@shop = Shop.find(params[:id])
-      @enrollment = Customer.shops.find(params[:id])
+    #   render :index_owner
+    # else  
+    # #customer 
+    #   #@shop = Shop.find(params[:id])
+    #   @enrollment = Customer.shops.find(params[:id])
       
-      render :index_customer
+    #   render :index_customer
+    # end
+    if params[:customer_id] != current_user.id.to_s
+      return redirect_to root_path, notice: 'Not authorized'
     end
+    @shops = current_user.shops
   end
 
   def new
@@ -55,14 +59,9 @@ class EnrollmentsController < ApplicationController
   private
 
     def enrollment_params
-    params.require(:enrollment).permit(:shop_id, :customer_id, :points)
-  end
-    
-    
-    def has_enrollment(enrollment_params)
-      customer.shop ? true : false
+      params.require(:enrollment).permit(:shop_id, :customer_id, :points)
     end
-
+    
     def rewards
       if @points >= 250
         rewards = 25 + @rewards
@@ -76,8 +75,8 @@ class EnrollmentsController < ApplicationController
     def points_to_rewards
       points = 250 - @points 
     end
+
     def total_redeemed
       self.total_attribute(:total, new_total)
-      
     end
 end

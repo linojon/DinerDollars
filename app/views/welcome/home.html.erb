@@ -2,7 +2,7 @@
   <% if current_user %>
     <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
   <% else %>
-    <%= link_to "Restaurant Owners Sign In", new_owner_session_path, class: "btn btn-warning" %>
+    <%= link_to "Restaurant Owners Sign In", new_user_session_path(owners: true), class: "btn btn-warning" %>
   <% end %>
  </div> 
  <div class="jumbotron">
@@ -14,9 +14,9 @@
 
   </div>
 <div class="choices">
-  <%= link_to "ENROLL NOW!", new_customer_registration_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "ENROLL NOW!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
   <p>OR <br /> Already a member?</p>
-  <%= link_to "Check My Diner Dollars", new_customer_session_path, class: "btn btn-lg btn-success" %>
+  <%= link_to "Check My Diner Dollars", new_user_session_path, class: "btn btn-lg btn-success" %>
 </div>
 
 <h2>&diams; PARTICIPATING LOCAL RESTAURANTS &diams; </h2>

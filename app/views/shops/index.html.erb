@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>My Dedicated Diner Dollars Review</h2>
+  <h2>NOT!!! My Dedicated Diner Dollars Review</h2>
   <br />
 
   <table class="table table-striped table-bordered">
@@ -9,13 +9,11 @@
       <th>Diner $ Available</th>
       <th>Points Needed to Next $</th>
     </tr>
-  <% if has_enrollment? %>
-   <% @enrollments.each do |enrollments| %>
-    <tr>
-      <td><%= @shop.name %></td>
-      <td><%= @points %></td>
-    </tr>
-    <% end %>
+    <% @enrollments.each do |enrollments| %>
+      <tr>
+        <td><%= @shop.name %></td>
+        <td><%= @points %></td>
+      </tr>
     <% end %>
 
   </table>

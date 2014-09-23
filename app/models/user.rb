@@ -4,15 +4,25 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def role?(base_role)
-   role == base_role.to_s
-  end
+  # owner-specific
+  has_one :shop
 
-  self.inheritance_column = nil
+  # customer-specific
+  has_many :enrollments, foreign_key: 'customer_id'
+  has_many :shops, through: :enrollments
+
 
   scope :owners, -> {where role: 'Owner' }
   scope :customers, -> {where role: 'Customer' }
   scope :admin, -> {where role: 'Admin' }
+
+  def role?(base_role)
+   role == base_role.to_s
+  end
+
+  def customer?
+    role == 'Customer' || role.blank?
+  end
 
   def owner?
     role == 'Owner'

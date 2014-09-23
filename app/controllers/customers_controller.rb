@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
     
   end
   def new
-    @customer = Customer.new
+    @customer = User.new role: 'Customer'
     
   end
   private
