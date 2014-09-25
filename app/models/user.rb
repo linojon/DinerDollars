@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :role, inclusion: {in: ['Owner', 'Customer', 'Admin']}, allow_blank: true
+
   # owner-specific
   has_one :shop
 
@@ -21,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def customer?
-    role == 'Customer' || role.blank?
+    (role == 'Customer') || role.blank?
   end
 
   def owner?

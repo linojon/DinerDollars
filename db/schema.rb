@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925021058) do
+ActiveRecord::Schema.define(version: 20140925031401) do
 
   create_table "enrollments", force: true do |t|
     t.integer  "shop_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140925021058) do
     t.integer  "codenumber"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
 
   create_table "users", force: true do |t|

@@ -15,10 +15,13 @@ class EnrollmentsController < ApplicationController
       
     #   render :index_customer
     # end
-    if params[:customer_id] != current_user.id.to_s
+
+    # debugger
+    if !current_user || (params[:customer_id] != current_user.id.to_s)
       return redirect_to root_path, notice: 'Not authorized'
     end
-    @shops = current_user.shops
+    @enrollments = current_user.enrollments
+    @all_shops = Shop.all
   end
 
   def new
@@ -35,13 +38,13 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-    @enrollment = Enrollment.new(params[:enrollment])
+    @enrollment = current_user.enrollments.build shop_id: params[:shop_id], points: 0
+    # debugger
     if @enrollment.save
-      points = 0
-      redirect_to @enrollment, notice: "Your enrollment was saved successfully."
+      redirect_to customer_enrollments_path(current_user), notice: "Your enrollment was saved successfully."
     else
       flash[:error] = "Error creating enrollment. Please try again."
-      render :new
+      render :back
     end
   end
 

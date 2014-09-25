@@ -3,11 +3,12 @@ class WelcomeController < ApplicationController
     # debugger
     if current_user 
       if current_user.owner?
-        redirect_to owners_home_path
+        return redirect_to owners_home_path
       elsif current_user.customer?
-        redirect_to customer_enrollments_path(current_user)
+        return redirect_to customer_enrollments_path(current_user)
       end
     end
+    @shops = Shop.all
   end
 
   def about

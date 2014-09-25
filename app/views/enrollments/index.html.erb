@@ -12,13 +12,33 @@
       <th>Points Needed to Next $</th>
     </tr>
   
-   <% @shops.each do |shop| %>
-    <tr>
-      <td><%= shop.name %></td>
-      <td><%= enrollment.points %></td>
-    </tr>
-    
+    <% @enrollments.each do |enrollment| %>
+      <tr>
+        <td><%= enrollment.shop.name %></td>
+        <td><%= enrollment.points %></td>
+      </tr>
     <% end %>
+  </table>
+
+  <h2>Shops</h2>
+  <!-- this could be moved somewhere else, or into the above table? -->
+  <table class="table table-striped table-bordered">
+    <thead>
+      <th>Restaurant</th>
+      <th>Enrolled</th>
+    </thead>
+    <tbody>
+      <% @all_shops.each do |shop| %>
+        <tr>
+          <td><%= shop.name %></td>
+          <td>
+            <% if current_user.shops.include? shop %>
+              ENROLLED
+            <% else %>
+              <%= link_to "Enroll", customer_enrollments_path(current_user, shop_id: shop.id), method: :post, class: 'btn btn-primary' %>
+            <% end %>
+      <% end %>
+    </tbody>
 
   </table>
 
